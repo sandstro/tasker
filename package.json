@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sandstro/tasker/issues"
   },
-  "homepage": "https://github.com/sandstro/tasker#readme"
+  "homepage": "https://github.com/sandstro/tasker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
