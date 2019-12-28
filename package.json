@@ -1,0 +1,19 @@
+{
+  "name": "tasker",
+  "version": "1.0.0",
+  "description": "Add tasks to authenticated user",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandstro/tasker.git"
+  },
+  "author": "sandstro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandstro/tasker/issues"
+  },
+  "homepage": "https://github.com/sandstro/tasker#readme"
+}
