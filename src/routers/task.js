@@ -4,8 +4,23 @@ const auth = require('../middleware/auth');
 const router = new express.Router();
 
 router.get('/tasks', auth, async (req, res) => {
+  const match = {};
+  const pageSize = parseInt(req.query.pageSize) || 10;
+  const page = parseInt(req.query.page) || 1;
+
+  if (req.query.completed) {
+    match.completed = req.query.completed === 'true';
+  }
+
   try {
-    await req.user.populate('tasks').execPopulate();
+    await req.user.populate({
+      path: 'tasks',
+      match,
+      options: {
+        limit: pageSize,
+        skip: (page - 1) * pageSize
+      }
+    }).execPopulate();
     res.send(req.user.tasks);
   } catch (error) {
     res.status(500).send();
