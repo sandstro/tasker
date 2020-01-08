@@ -7,9 +7,15 @@ router.get('/tasks', auth, async (req, res) => {
   const match = {};
   const pageSize = parseInt(req.query.pageSize) || 10;
   const page = parseInt(req.query.page) || 1;
+  const sort = {};
 
   if (req.query.completed) {
     match.completed = req.query.completed === 'true';
+  }
+
+  if (req.query.sortBy) {
+    const [sortBy, sortType] = req.query.sortBy.split(':');
+    sort[sortBy] = sortType === 'desc' ? -1 : 1;
   }
 
   try {
@@ -18,7 +24,8 @@ router.get('/tasks', auth, async (req, res) => {
       match,
       options: {
         limit: pageSize,
-        skip: (page - 1) * pageSize
+        skip: (page - 1) * pageSize,
+        sort
       }
     }).execPopulate();
     res.send(req.user.tasks);
