@@ -2,6 +2,8 @@ const express = require('express');
 require('dotenv').config();
 require('./db/mongoose');
 
+const multer = require('multer');
+
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
 const authRouter = require('./routers/auth');
@@ -14,6 +16,10 @@ app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
 app.use(authRouter);
+
+app.use(multer({
+  dest:'./uploads/'
+}));
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
